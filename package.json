@@ -1,0 +1,27 @@
+{
+  "name": "nginx-site",
+  "version": "0.0.0",
+  "description": "nginx site template for generating nginx site configuration",
+  "main": "index.js",
+  "bin": {
+    "nginx-site": "./bin.js"
+  },
+  "scripts": {
+    "test": "standard"
+  },
+  "type": "module",
+  "keywords": [
+    "nginx",
+    "site",
+    "template",
+    "sites-available"
+  ],
+  "author": "Lars-Magnus Skog <ralphtheninja@riseup.net>",
+  "license": "GLPLv3",
+  "devDependencies": {
+    "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
+}
