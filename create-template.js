@@ -5,12 +5,14 @@ const createTemplate = (args = {}) => {
     template = standard,
     domains,
     root,
-    port
+    port,
+    index
   } = args
   return template({
     domains,
     root,
-    port
+    port,
+    index
   })
 }
 

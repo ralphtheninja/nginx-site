@@ -15,7 +15,8 @@ nginx-site [options]
   -d DOMAIN, --domain=DOMAIN        --  at least one is required, can combine multiple
   -r ROOT, --root=ROOT              --  root folder of the files to serve
   -p PORT, --port=PORT              --  port number to listen to, optional, default 80
-  -e, --examples                    --  show some examples
+  -i INDEX, --index=INDEX           --  index files, optional, can be used multiple times
+  -e, --examples                    --  print some examples to stdout
   -h, --help                        --  print this help and exit
 `
 
@@ -25,6 +26,7 @@ let argv = minimist(process.argv.slice(2), {
     root: 'r',
     port: 'p',
     template: 't',
+    index: 'i',
     examples: 'e',
     help: 'h'
   },
@@ -58,6 +60,13 @@ if (!argv.domains) {
 if (Array.isArray(argv.domains)) {
   argv = Object.assign({}, argv, {
     domains: argv.domains.join(' ')
+  })
+}
+
+// Convert multiple index files to space separated string
+if (Array.isArray(argv.index)) {
+  argv = Object.assign({}, argv, {
+    index: argv.index.join(' ')
   })
 }
 

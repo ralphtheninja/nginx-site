@@ -28,14 +28,14 @@ server {
 As above but with some more parameters:
 
 ```
-$ npx nginx-site -d example.com -d www.example.com -p 443 -r /path/to/my/root
+$ npx nginx-site -d example.com -d www.example.com -p 443 -r /path/to/my/root -i foo.html -i bar.htm
 
 server {
   listen 443;
   listen [::]:443;
 
   root /path/to/my/root;
-  index index.html index.htm index.nginx-debian.html;
+  index foo.html bar.htm;
 
   server_name example.com www.example.com;
 
@@ -59,21 +59,32 @@ nginx-site [options]
   -d DOMAIN, --domain=DOMAIN        --  at least one is required, can combine multiple
   -r ROOT, --root=ROOT              --  root folder of the files to serve
   -p PORT, --port=PORT              --  port number to listen to, optional, default 80
+  -i INDEX, --index=INDEX           --  index files, optional, can be used multiple times
+  -e, --examples                    --  print some examples to stdout
   -h, --help                        --  print this help and exit
 ```
 
-### `-r root` _(optional)_
+### `-t TEMPLATE` _(optional)_
 
+Picks the template type. Defaults to `standard`. A template is just a function returning a template literal filled in from parameters provided by the command line.
 
-### `-d domain` _(required)_
+### `-d DOMAIN` _(REQUIRED)_
 
 Must provide at least one value but can be combined multiple times. This will have effect on the `server_name` field by concatenation of all domains given.
 
 Also sets the nginx `root` field to the first domain, unless `-r` is used to set it explicitly.
 
-### `-t type` _(optional)_
+### `-r ROOT` _(OPTIONAL)_
 
-Picks the template type. Defaults to `standard`. A template is just a function returning a template literal filled in from parameters provided by the command line.
+Sets the nginx `root` field explicitly. See `-d` above.
+
+### `-p PORT` _(optional)_
+
+Sets the nginx `listen` fields for both `ipv4` and `ipv6`. Default is `80`.
+
+### `-i INDEX` _(optional)_
+
+Sets the nginx `index` field explicitly. Can be combined multiples.
 
 ## JavaScript API
 
