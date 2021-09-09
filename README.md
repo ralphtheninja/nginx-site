@@ -25,6 +25,27 @@ server {
 
 ```
 
+As above but with some more parameters:
+
+```
+$ npx nginx-site -d example.com -d www.example.com -p 443 -r /path/to/my/root
+
+server {
+  listen 443;
+  listen [::]:443;
+
+  root /path/to/my/root;
+  index index.html index.htm index.nginx-debian.html;
+
+  server_name example.com www.example.com;
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+}
+
+```
+
 ## CLI
 
 ```
