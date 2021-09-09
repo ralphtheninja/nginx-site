@@ -1,4 +1,4 @@
-# nginx-site -- WIP
+# nginx-site
 
 > `nginx` template cli tool for creating available site configuration
 
