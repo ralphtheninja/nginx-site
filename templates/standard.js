@@ -1,8 +1,8 @@
 export default ({
   root,
-  port = 80,
-  index = 'index.html index.htm index.nginx-debian.html',
-  domains = 'example.com www.example.com'
+  port,
+  index,
+  domains
 }) => `
 server {
   listen ${port};

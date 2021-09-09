@@ -12,27 +12,28 @@ const usage = () => `
 nginx-site [options]
 
   -t TEMPLATE, --template=TEMPLATE  --  template type, default 'standard'
-  -d DOMAIN, --domain=DOMAIN        --  at least one is required, can combine multiple
+  -d DOMAIN, --domain=DOMAIN        --  server name(s), can combine multiple
   -r ROOT, --root=ROOT              --  root folder of the files to serve
-  -p PORT, --port=PORT              --  port number to listen to, optional, default 80
-  -i INDEX, --index=INDEX           --  index files, optional, can be used multiple times
+  -p PORT, --port=PORT              --  port number to listen to, default 80
+  -i INDEX, --index=INDEX           --  index files, can be used multiple times, defaults to basic index.html
   -e, --examples                    --  print some examples to stdout
   -h, --help                        --  print this help and exit
 `
 
 let argv = minimist(process.argv.slice(2), {
   alias: {
+    template: 't',
     domains: 'd',
     root: 'r',
     port: 'p',
-    template: 't',
-    index: 'i',
+    index: 'index.html index.htm index.nginx-debian.html',
     examples: 'e',
     help: 'h'
   },
   default: {
+    template: 'standard',
+    domains: 'example.com www.example.com',
     port: 80,
-    template: 'standard'
   }
 })
 

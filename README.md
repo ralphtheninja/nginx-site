@@ -4,10 +4,10 @@
 
 ## Usage
 
-Print a standard config for domain `example.com` to `stdout`.
+Print a standard `example.com` site configuration to `stdout`.
 
 ```
-$ npx nginx-site -d example.com
+$ npx nginx-site
 
 server {
   listen 80;
@@ -56,35 +56,39 @@ $ npx nginx-site -H
 nginx-site [options]
 
   -t TEMPLATE, --template=TEMPLATE  --  template type, default 'standard'
-  -d DOMAIN, --domain=DOMAIN        --  at least one is required, can combine multiple
+  -d DOMAIN, --domain=DOMAIN        --  server name(s), can combine multiple
   -r ROOT, --root=ROOT              --  root folder of the files to serve
-  -p PORT, --port=PORT              --  port number to listen to, optional, default 80
-  -i INDEX, --index=INDEX           --  index files, optional, can be used multiple times
+  -p PORT, --port=PORT              --  port number to listen to, default 80
+  -i INDEX, --index=INDEX           --  index files, can be used multiple times, defaults to basic index.html
   -e, --examples                    --  print some examples to stdout
   -h, --help                        --  print this help and exit
 ```
 
-### `-t TEMPLATE` _(optional)_
+### `-t TEMPLATE`
 
 Picks the template type. Defaults to `standard`. A template is just a function returning a template literal filled in from parameters provided by the command line.
 
-### `-d DOMAIN` _(REQUIRED)_
+### `-d DOMAIN`
 
-Must provide at least one value but can be combined multiple times. This will have effect on the `server_name` field by concatenation of all domains given.
+Sets the nginx `server_name` field. Can be combined multiple times.
 
 Also sets the nginx `root` field to the first domain, unless `-r` is used to set it explicitly.
 
-### `-r ROOT` _(OPTIONAL)_
+### `-r ROOT`
 
 Sets the nginx `root` field explicitly. See `-d` above.
 
-### `-p PORT` _(optional)_
+### `-p PORT`
 
 Sets the nginx `listen` fields for both `ipv4` and `ipv6`. Default is `80`.
 
-### `-i INDEX` _(optional)_
+### `-i INDEX`
 
 Sets the nginx `index` field explicitly. Can be combined multiples.
+
+### `-e`
+
+Prints some examples to `stdout`.
 
 ## JavaScript API
 
