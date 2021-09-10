@@ -46,6 +46,21 @@ server {
 
 ```
 
+This is all fine and dandy, but `nginx-site` doesn't assume anything and just prints to `stdout` so you have to make commands to decide where the data should go.
+
+Normally, `nginx` configuration is somewhere under `/etc/nginx` but you need `sudo` access to write to files there. So you have to pipe the result like this:
+
+```bash
+npx nginx-site | sudo tee -a /etc/nginx/sites-available/my-site
+```
+
+Note that you can have multiple `server` blocks in a configuration, so you just call `nginx-site` again with the other settings, e.g.
+
+```bash
+npx nginx-site | sudo tee -a /etc/nginx/sites-available/my-site
+npx nginx-site -p 443 | sudo tee -a /etc/nginx/sites-available/my-site
+```
+
 ## CLI
 
 ```
