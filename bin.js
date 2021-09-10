@@ -26,13 +26,14 @@ let argv = minimist(process.argv.slice(2), {
     domains: 'd',
     root: 'r',
     port: 'p',
-    index: 'index.html index.htm index.nginx-debian.html',
+    index: 'i',
     examples: 'e',
     help: 'h'
   },
   default: {
     template: 'standard',
     domains: 'example.com www.example.com',
+    index: 'index.html index.htm index.nginx-debian.html',
     port: 80,
   }
 })
